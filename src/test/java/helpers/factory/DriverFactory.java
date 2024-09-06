@@ -5,14 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DriverFactory {
 
     private WebDriver driver;
 
-    // Constructor ile driver'ı PicoContainer tarafından enjekte edilebilir hale getiriyoruz
     public DriverFactory() {
         String browser = ConfigurationReader.get("browser");
 
@@ -35,7 +33,7 @@ public class DriverFactory {
                 break;
 
             default:
-                throw new IllegalArgumentException("Browser type not supported: " + browser);
+                throw new IllegalArgumentException("Unsupported browser: " + browser);
         }
     }
 

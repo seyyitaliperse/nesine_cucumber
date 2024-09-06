@@ -8,6 +8,7 @@ public class InjectionFactory {
 
     private static ThreadLocal<LoginPage> loginPage = new ThreadLocal<>();
     private static ThreadLocal<BrowserUtils> browserUtils = new ThreadLocal<>();
+    private static ThreadLocal<Utils> utils = new ThreadLocal<>();
 
     public static LoginPage getLoginPage(WebDriver driver) {
         if (loginPage.get() == null) {
@@ -22,4 +23,12 @@ public class InjectionFactory {
         }
         return browserUtils.get();
     }
+
+    public static Utils getUtils(WebDriver driver) {
+        if (utils.get() == null) {
+            utils.set(new Utils(driver));
+        }
+        return utils.get();
+    }
+
 }
