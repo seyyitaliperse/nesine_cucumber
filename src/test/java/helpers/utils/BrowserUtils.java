@@ -83,6 +83,17 @@ public class BrowserUtils {
         }
     }
 
+    public void assertVisibilityOfElement(WebElement element, String message) {
+        try {
+            wait.until(ExpectedConditions.visibilityOf(element));
+            logger.info("Element is visible: " + message);
+        } catch (Exception e) {
+            String failureMessage = String.format("Element is not visible. %s", message);
+            logger.error(failureMessage);
+            throw new AssertionError(failureMessage, e);
+        }
+    }
+
     public void navigateTo(String url, WebElement element) {
         try {
             logger.info("Navigating to URL: " + url);

@@ -6,44 +6,43 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
-
 public class DriverFactory {
 
-    private WebDriver driver;
+    private static WebDriver driver;
 
-    public DriverFactory() {
-        String browser = ConfigurationReader.get("browser");
+    public static WebDriver getDriver() {
+        if (driver == null) {
+            String browser = ConfigurationReader.get("browser");
 
-        switch (browser.toLowerCase()) {
-            case "chrome":
-                WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
-                break;
+            switch (browser.toLowerCase()) {
+                case "chrome":
+                    WebDriverManager.chromedriver().setup();
+                    driver = new ChromeDriver();
+                    break;
 
-            case "chrome-headless":
-                WebDriverManager.chromedriver().setup();
-                ChromeOptions chromeHeadlessOptions = new ChromeOptions();
-                chromeHeadlessOptions.addArguments("--headless", "--disable-gpu", "--no-sandbox");
-                driver = new ChromeDriver(chromeHeadlessOptions);
-                break;
+                case "chrome-headless":
+                    WebDriverManager.chromedriver().setup();
+                    ChromeOptions chromeHeadlessOptions = new ChromeOptions();
+                    chromeHeadlessOptions.addArguments("--headless", "--disable-gpu", "--no-sandbox");
+                    driver = new ChromeDriver(chromeHeadlessOptions);
+                    break;
 
-            case "edge":
-                WebDriverManager.edgedriver().setup();
-                driver = new EdgeDriver();
-                break;
+                case "edge":
+                    WebDriverManager.edgedriver().setup();
+                    driver = new EdgeDriver();
+                    break;
 
-            default:
-                throw new IllegalArgumentException("Unsupported browser: " + browser);
+                default:
+                    throw new IllegalArgumentException("Unsupported browser: " + browser);
+            }
         }
-    }
-
-    public WebDriver getDriver() {
         return driver;
     }
 
-    public void quitDriver() {
+    public static void quitDriver() {
         if (driver != null) {
             driver.quit();
+            driver = null; // Driver'ı null yapıyoruz ki yeniden başlatılabilsin
         }
     }
 }

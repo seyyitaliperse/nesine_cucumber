@@ -3,7 +3,9 @@ package runners;
 import helpers.container.ContainerSetup;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+import helpers.factory.DriverFactory;
 
 @CucumberOptions(
         features = "src/test/resources/scenarios",
@@ -23,6 +25,12 @@ public class Runner extends AbstractTestNGCucumberTests {
     @BeforeSuite
     public void initContainer() {
         ContainerSetup.setup();
+        DriverFactory.getDriver(); // Driver sadece bir kez başlatılır
+    }
+
+    @AfterSuite
+    public void tearDownSuite() {
+        DriverFactory.quitDriver(); // Suite sonunda driver kapatılır
     }
 
     @Override

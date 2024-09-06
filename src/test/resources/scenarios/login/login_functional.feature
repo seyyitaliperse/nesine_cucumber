@@ -9,6 +9,7 @@ Feature: Nesine login & logout
     When user log in nesine dashboard
     Then user verifies that logged in successfully
 
+  @smoke
   Scenario: User should not be able to log in with invalid credentials
     Given user is on the nesine login page
     When user attempts to log in with invalid credentials

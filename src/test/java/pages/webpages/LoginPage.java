@@ -10,7 +10,7 @@ public class LoginPage extends FactoryPage {
 
     //Evidence
     @FindBy(xpath = "//span[@data-testid='header-bakiye']")
-    private WebElement balanceEvidence;
+    public WebElement balanceEvidence;
 
 
     //Inputs
@@ -18,7 +18,7 @@ public class LoginPage extends FactoryPage {
     private WebElement userNameInput;
     @FindBy(xpath = "//input[@data-test-id='header-password-input']")
     private WebElement passwordInput;
-    @FindBy(xpath = "//input[@data-test-id='header-login-btn']")
+    @FindBy(xpath = "//button[@data-test-id='header-login-btn']")
     private WebElement loginButton;
 
     //Dialog
