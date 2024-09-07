@@ -1,21 +1,24 @@
 package steps;
 
-import helpers.container.ContainerSetup;
+import helpers.container.Context;
 import helpers.readers.JsonDataReader;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import pages.factory.PageFactoryManager;
 import pages.factory.Utils;
 import pages.webpages.LoginPage;
 
 public class LoginSteps {
+    private final Context context;
     private final LoginPage loginPage;
     private final Utils utils;
     private final String fileName = "login";
 
-    public LoginSteps(){
-        this.loginPage = ContainerSetup.getComponent(LoginPage.class);
-        this.utils = ContainerSetup.getComponent(Utils.class);
+    public LoginSteps(Context context){
+        this.context = context;
+        this.loginPage = PageFactoryManager.getLoginPage(context);
+        this.utils = PageFactoryManager.getUtils(context);
     }
 
     @Then("user navigates to nesine login page")

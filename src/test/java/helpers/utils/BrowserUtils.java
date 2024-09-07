@@ -1,5 +1,6 @@
 package helpers.utils;
 
+import helpers.container.Context;
 import helpers.logger.LoggerFactory;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -9,18 +10,17 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import java.time.Duration;
-
 public class BrowserUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(BrowserUtils.class);
-    protected WebDriver driver;
-    private WebDriverWait wait;
-    private final int WAIT_TIME = 10000;
+    public WebDriver driver;
+    public WebDriverWait wait;
+    private final Context context;
 
-    public BrowserUtils(WebDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofMillis(WAIT_TIME));
+    public BrowserUtils(Context context) {
+        this.context = context;
+        this.driver = context.getDriver();
+        this.wait = context.getWebDriverWait();
     }
 
     public void click(WebElement element) {

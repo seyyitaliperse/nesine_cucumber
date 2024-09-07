@@ -1,12 +1,13 @@
 package pages.webpages;
 
+import helpers.container.Context;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import pages.factory.FactoryPage;
+import pages.factory.BasePage;
 
-public class LoginPage extends FactoryPage {
+public class LoginPage extends BasePage {
 
     //Evidence
     @FindBy(xpath = "//span[@data-testid='header-bakiye']")
@@ -29,9 +30,9 @@ public class LoginPage extends FactoryPage {
         navigateTo("", userNameInput);
     }
 
-    public LoginPage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
+    public LoginPage(Context context) {
+        super(context);
+        PageFactory.initElements(context.getDriver(), this);
     }
 
     public void login(String userName, String password){

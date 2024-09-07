@@ -1,6 +1,5 @@
 package runners;
 
-import helpers.container.ContainerSetup;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.AfterSuite;
@@ -24,8 +23,6 @@ public class Runner extends AbstractTestNGCucumberTests {
 
     @BeforeSuite
     public void initContainer() {
-        ContainerSetup.setup();
-        DriverFactory.getDriver();
     }
 
     @AfterSuite

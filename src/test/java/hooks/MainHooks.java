@@ -1,6 +1,6 @@
 package hooks;
 
-import helpers.container.ContainerSetup;
+import helpers.container.Context;
 import helpers.factory.DriverFactory;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -10,21 +10,25 @@ import org.openqa.selenium.TakesScreenshot;
 
 public class MainHooks {
 
-    private DriverFactory driverFactory;
+    private Context context;
 
-    @Before
-    public void setUp() {
-        driverFactory = ContainerSetup.getComponent(DriverFactory.class);
-        driverFactory.getDriver();
+    public MainHooks(Context context){
+     this.context = context;
     }
 
-    @After
+    @Before(order = 1)
+    public void setUp() {
+        context.setDriver(DriverFactory.getDriver());
+        context.setWebDriverWait(DriverFactory.getWebDriverWait());
+    }
+
+    @After(order = 1)
     public void tearDown(Scenario scenario) {
         if (scenario.isFailed()) {
-            final byte[] screenshot = ((TakesScreenshot) driverFactory.getDriver())
+            final byte[] screenshot = ((TakesScreenshot) context.getDriver())
                     .getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot, "image/png", "Screenshot");
         }
-        driverFactory.quitDriver();
+        DriverFactory.quitDriver();
     }
 }

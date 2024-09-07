@@ -1,17 +1,18 @@
 package hooks;
 
-import helpers.container.ContainerSetup;
-import helpers.factory.DriverFactory;
+import helpers.container.Context;
 import helpers.readers.JsonDataReader;
 import io.cucumber.java.Before;
-import pages.factory.InjectionFactory;
+import pages.factory.PageFactoryManager;
 import pages.webpages.LoginPage;
 
 public class LoginHooks {
     private final LoginPage loginPage;
+    private Context context;
 
-    public LoginHooks(){
-        this.loginPage = ContainerSetup.getComponent(LoginPage.class);
+    public LoginHooks(Context context){
+        this.context = context;
+        this.loginPage = PageFactoryManager.getLoginPage(context);
     }
 
     @Before(value = "@_userLogin", order = 10)

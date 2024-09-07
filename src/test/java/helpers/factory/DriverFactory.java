@@ -6,13 +6,20 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
 public class DriverFactory {
 
     private static WebDriver driver;
+    private static WebDriverWait webDriverWait;
+    private static long waitTime = Long.parseLong(ConfigurationReader.get("waitMillis"));
+    private static String browser = ConfigurationReader.get("browser");
 
     public static WebDriver getDriver() {
         if (driver == null) {
-            String browser = ConfigurationReader.get("browser");
+
 
             switch (browser.toLowerCase()) {
                 case "chrome":
@@ -44,5 +51,9 @@ public class DriverFactory {
             driver.quit();
             driver = null;
         }
+    }
+
+    public static WebDriverWait getWebDriverWait(){
+        return webDriverWait = new WebDriverWait(driver, Duration.ofMillis(waitTime));
     }
 }
