@@ -9,6 +9,11 @@ import pages.factory.BasePage;
 
 public class LoginPage extends BasePage {
 
+    public LoginPage(Context context) {
+        super(context);
+        PageFactory.initElements(context.getDriver(), this);
+    }
+
     //Evidence
     @FindBy(xpath = "//span[@data-testid='header-bakiye']")
     public WebElement balanceEvidence;
@@ -28,11 +33,6 @@ public class LoginPage extends BasePage {
 
     public void navigateToLoginPage() {
         navigateTo("", userNameInput);
-    }
-
-    public LoginPage(Context context) {
-        super(context);
-        PageFactory.initElements(context.getDriver(), this);
     }
 
     public void login(String userName, String password){
