@@ -11,14 +11,15 @@ import pages.webpages.LoginPage;
 public class LoginSteps {
     private final LoginPage loginPage;
     private final Utils utils;
+    private final String fileName = "login";
 
     public LoginSteps(){
         this.loginPage = ContainerSetup.getComponent(LoginPage.class);
         this.utils = ContainerSetup.getComponent(Utils.class);
     }
 
-    @Then("user is on the nesine login page")
-    public void userIsOnTheNesineLoginPage() {
+    @Then("user navigates to nesine login page")
+    public void userNavigatesToNesineLoginPage() {
         loginPage.navigateToLoginPage();
     }
 
@@ -36,9 +37,17 @@ public class LoginSteps {
 
     @When("user attempts to log in with invalid credentials")
     public void userAttemptsToLogInWithInvalidCredentials() {
+        String tckn = JsonDataReader.getUserCredential("user","tckn");
+        String password = "axasdjasjdj";
+        loginPage.loginNegative(tckn, password);
     }
 
     @And("user should see an invalid credential dialog error details")
     public void userShouldSeeAnInvalidCredentialDialogErrorDetails() {
+        String dialogFirst = JsonDataReader.getFeatureData(fileName, "invalidCredentials", "textFirst");
+        String dialogSecond = JsonDataReader.getFeatureData(fileName, "invalidCredentials", "textSecond");
+
+        utils.assertContainsText(loginPage.invalidCredentialsDialogDetails, dialogFirst, "Invalid credentials first dialog details is not as expected..");
+        utils.assertContainsText(loginPage.invalidCredentialsDialogDetails, dialogSecond, "Invalid credentials second dialog details is not as expected..");
     }
 }

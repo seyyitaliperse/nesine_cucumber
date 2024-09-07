@@ -4,6 +4,7 @@ import org.picocontainer.DefaultPicoContainer;
 import org.picocontainer.MutablePicoContainer;
 import helpers.factory.DriverFactory;
 import org.openqa.selenium.WebDriver;
+import pages.factory.Utils;
 import pages.webpages.LoginPage;
 
 public class ContainerSetup {
@@ -16,6 +17,7 @@ public class ContainerSetup {
             container.addComponent(DriverFactory.class);
             container.addComponent(WebDriver.class, container.getComponent(DriverFactory.class).getDriver());
             container.addComponent(LoginPage.class);
+            container.addComponent(Utils.class);
         }
     }
 

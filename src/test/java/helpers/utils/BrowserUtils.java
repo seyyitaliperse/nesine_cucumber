@@ -72,16 +72,18 @@ public class BrowserUtils {
         Assert.assertEquals(actual, expected, message);
     }
 
-    public void assertContains(String actual, String expected, String message) {
+    public void assertContainsText(WebElement actualElement, String expected, String message) {
+        String actualText = getText (actualElement);
+
         try {
-            Assert.assertTrue(actual.contains(expected), message);
+            Assert.assertTrue(actualText.contains(expected), message);
         } catch (AssertionError e) {
-            String failureMessage = String.format("%s%nActual: %s%nExpected: %s", message, actual,
-                    expected);
+            String failureMessage = String.format("%s%nActual: %s%nExpected: %s", message, actualText, expected);
             System.err.println(failureMessage);
             throw new AssertionError(failureMessage, e);
         }
     }
+
 
     public void assertVisibilityOfElement(WebElement element, String message) {
         try {

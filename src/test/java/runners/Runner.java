@@ -18,7 +18,7 @@ import helpers.factory.DriverFactory;
         },
         monochrome = true,
         dryRun = false,
-        tags = "@smoke or @regression"
+        tags = "@testing"
 )
 public class Runner extends AbstractTestNGCucumberTests {
 

@@ -23,7 +23,7 @@ public class LoginPage extends FactoryPage {
 
     //Dialog
     @FindBy(xpath = "//div[@class='modalContainer']//p")
-    private WebElement invalidCredentialsDialogDetails;
+    public WebElement invalidCredentialsDialogDetails;
 
     public void navigateToLoginPage() {
         navigateTo("", userNameInput);
@@ -39,6 +39,12 @@ public class LoginPage extends FactoryPage {
         enterText(passwordInput, password);
         click(loginButton);
         waitForVisibilityOfElement(balanceEvidence);
+    }
+
+    public void loginNegative(String userName, String password){
+        enterText(userNameInput, userName);
+        enterText(passwordInput, password);
+        click(loginButton);
     }
 
 
