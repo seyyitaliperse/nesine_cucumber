@@ -2,7 +2,9 @@ package steps;
 
 import helpers.container.Context;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import pages.factory.PageFactoryManager;
 import pages.factory.Utils;
 import pages.webpages.DashboardPage;
@@ -30,4 +32,22 @@ public class DashboardSteps {
     public void userVerifiesThatLoggedOutSuccessfully() {
         utils.assertInvisibilityOfElement(loginPage.balanceEvidence,"Could not logout from system!");
     }
+
+    @Given("user get member id from dashboard")
+    public void userGetMemberIdFromDashboard() {
+        String uyeNumarasi = utils.getText(dashboardPage.uyeNoValue);
+        context.getGlobalData().setData("uyeNumarasi", uyeNumarasi);
+    }
+
+    @When("user navigates to bilgilerim page")
+    public void userNavigatesToBilgilerimPage() {
+        dashboardPage.goToBilgilerim();
+    }
+
+
+    @Given("user navigates to promotion page")
+    public void userNavigatesToPromotionPage() {
+        dashboardPage.goToPromosyonlarim();
+    }
+
 }

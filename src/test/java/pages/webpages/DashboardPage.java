@@ -13,11 +13,22 @@ public class DashboardPage extends BasePage {
         PageFactory.initElements(context.getDriver(), this);
     }
 
+    //Header elements
+    @FindBy(xpath = "//span[@data-testid='header-userid']")
+    public WebElement uyeNoValue;
+
     //Hesabim Elements
     @FindBy(xpath = "//a[@data-testid='header-hesabim-btn']")
     private WebElement hesabimMenu;
-    @FindBy(xpath = "//a[contains(text(),'Çıkış')]")
+    @FindBy(xpath = "//a[@data-testid='header-hesabim-cikis']")
     private WebElement cikisButton;
+    @FindBy(xpath = "//a[@data-testid='header-hesabim-promosyonlarim']")
+    private WebElement promosyonlarimButton;
+    @FindBy(xpath = "//a[@data-testid='header-hesabim-bilgilerim']")
+    private WebElement bilgilerimButton;
+
+
+
 
     public void openHesabimMenu(){
         hoverOver(hesabimMenu);
@@ -27,6 +38,18 @@ public class DashboardPage extends BasePage {
         openHesabimMenu();
         click(cikisButton);
     }
+
+    public void goToPromosyonlarim(){
+        openHesabimMenu();
+        click(promosyonlarimButton);
+    }
+
+    public void goToBilgilerim(){
+        openHesabimMenu();
+        click(bilgilerimButton);
+    }
+
+
 
 
 

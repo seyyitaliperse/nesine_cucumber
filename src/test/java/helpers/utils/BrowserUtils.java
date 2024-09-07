@@ -55,6 +55,11 @@ public class BrowserUtils {
         }
     }
 
+    public String getInputValue(WebElement element) {
+        waitForVisibilityOfElement(element);
+        return element.getAttribute("value");
+    }
+
     public boolean isElementVisible(WebElement element) {
         try {
             wait.until(ExpectedConditions.visibilityOf(element));
@@ -74,6 +79,8 @@ public class BrowserUtils {
         }
     }
 
+
+    //WAIT METHODS
     public void waitForVisibilityOfElement(WebElement element) {
         try {
             wait.until(ExpectedConditions.visibilityOf(element));
@@ -82,8 +89,15 @@ public class BrowserUtils {
         }
     }
 
+
+    //ASSERTION METHODS
     public void assertEquals(Object actual, Object expected, String message) {
         Assert.assertEquals(actual, expected, message);
+    }
+
+    public void assertEqualsText(WebElement element, String expected, String message) {
+        String actualText = getText(element);
+        Assert.assertEquals(actualText, expected, message);
     }
 
     public void assertContainsText(WebElement actualElement, String expected, String message) {
@@ -123,6 +137,7 @@ public class BrowserUtils {
         }
     }
 
+    //NAVIGATE METHOD
     public void navigateTo(String url, WebElement element) {
         try {
             logger.info("Navigating to URL: " + url);
@@ -133,6 +148,7 @@ public class BrowserUtils {
         }
     }
 
+    //ACTIONS METHODS
     public void hoverOver(WebElement element) {
         try {
             waitForVisibilityOfElement(element);

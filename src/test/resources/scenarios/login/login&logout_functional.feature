@@ -1,10 +1,8 @@
 @login&logout
 Feature: Nesine login & logout
-  - User should be able to log in system
-  - User should not be able to log in with invalid credentials.
 
   @smoke
-  Scenario: User should be able to log in system
+  Scenario: User should be able to log in and logout from system
     Given user navigates to nesine login page
     When user log in nesine dashboard
     Then user verifies that logged in successfully
