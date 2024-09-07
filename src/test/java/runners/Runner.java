@@ -18,19 +18,19 @@ import helpers.factory.DriverFactory;
         },
         monochrome = true,
         dryRun = false,
-        tags = "@testing"
+        tags = "@smoke"
 )
 public class Runner extends AbstractTestNGCucumberTests {
 
     @BeforeSuite
     public void initContainer() {
         ContainerSetup.setup();
-        DriverFactory.getDriver(); // Driver sadece bir kez başlatılır
+        DriverFactory.getDriver();
     }
 
     @AfterSuite
     public void tearDownSuite() {
-        DriverFactory.quitDriver(); // Suite sonunda driver kapatılır
+        DriverFactory.quitDriver();
     }
 
     @Override

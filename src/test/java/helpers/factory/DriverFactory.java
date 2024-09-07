@@ -42,7 +42,7 @@ public class DriverFactory {
     public static void quitDriver() {
         if (driver != null) {
             driver.quit();
-            driver = null; // Driver'ı null yapıyoruz ki yeniden başlatılabilsin
+            driver = null;
         }
     }
 }
