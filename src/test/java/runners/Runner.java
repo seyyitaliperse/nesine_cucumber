@@ -13,7 +13,7 @@ import helpers.factory.DriverFactory;
                 "pretty",
                 "html:target/cucumber-reports/cucumber.html",
                 "json:target/cucumber-reports/cucumber.json",
-                "rerun:target/rerun.txt"
+                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
         },
         monochrome = true,
         dryRun = false,
@@ -31,7 +31,7 @@ public class Runner extends AbstractTestNGCucumberTests {
     }
 
     @Override
-    @org.testng.annotations.DataProvider(parallel = true)
+    @org.testng.annotations.DataProvider(parallel = false)
     public Object[][] scenarios() {
         return super.scenarios();
     }
