@@ -41,9 +41,10 @@ Bu komut ile Allure test sonuçlarını tarayıcıda görüntüleyebilir ve deta
 ## 4. Projenin Genel Yapısı
    Projenin yapısı aşağıdaki gibidir:
 
-* ``src/test/resources/config/`` dizini altında uygulamanın yapılandırma dosyaları bulunur. Buradan test_config.properties dosyasını düzenleyerek tarayıcı, URL ve paralel test sayısı gibi ayarlamaları yapabilirsiniz.
-* ``src/test/resources/data/`` altında testlerde kullanılan statik JSON verileri yer alır. user_credentials.json dosyasındaki kullanıcı bilgileri, testlerin başarılı bir şekilde çalıştırılması için gereklidir.
+* ``config`` dizini altında uygulamanın yapılandırma dosyaları bulunur. Buradan test_config.properties dosyasını düzenleyerek tarayıcı, URL ve paralel test sayısı gibi ayarlamaları yapabilirsiniz.
 * ``helpers`` dizini altında projenin ihtiyaç duyduğu gereklilikler vardır. 
+* ``common/*json`` altında testler için gerekli olan ve her ortamda var olan static veriler yer alır.
+* ``test/*json`` altında test ortamı için gerekli veriler yer alır.
 * ``pages`` dizini altında Page Object Model (POM) yapısında sayfa sınıfları bulunur. Bu sınıflar üzerinden uygulamanın çeşitli bölümleriyle etkileşim kurulur. 
 * ``runners`` dizini altında ise testlerin başlatılmasını sağlayan Runner sınıfı yer almaktadır. Bu sınıf TestNG kullanarak testlerin paralel çalışmasını sağlar.
 * ``MainHooks`` Testler başlamadan önce ve sonra kritik aksiyonları yönetir. WebDriver başlatma, tarayıcı kapatma, test başarısız olduğunda ekran görüntüsü alma ve raporlama gibi işlemler burada yapılır. Başarılı ya da başarısız olan senaryoların loglanması ve gerektiğinde ekran görüntülerinin Allure raporlarına eklenmesi sağlanır.
