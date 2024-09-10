@@ -6,8 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pages.factory.BasePage;
 
-public class PersonalInformation extends BasePage {
-    public PersonalInformation(Context context) {
+public class KisiselBilgilerim extends BasePage {
+    public KisiselBilgilerim(Context context) {
         super(context);
         PageFactory.initElements(context.getDriver(), this);
     }

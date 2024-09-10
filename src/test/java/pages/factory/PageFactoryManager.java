@@ -3,15 +3,15 @@ package pages.factory;
 import helpers.container.Context;
 import pages.webpages.DashboardPage;
 import pages.webpages.LoginPage;
-import pages.webpages.PersonalInformation;
-import pages.webpages.PromotionsPage;
+import pages.webpages.KisiselBilgilerim;
+import pages.webpages.PromosyonlarimPage;
 
 public class PageFactoryManager {
     private static Utils utils;
     private static LoginPage loginPage;
     private static DashboardPage dashboardPage;
-    private static PromotionsPage promotionsPage;
-    private static PersonalInformation personalInformation;
+    private static PromosyonlarimPage promosyonlarimPage;
+    private static KisiselBilgilerim kisiselBilgilerim;
 
 
     public static LoginPage getLoginPage(Context context) {
@@ -26,11 +26,11 @@ public class PageFactoryManager {
         return dashboardPage == null ? new DashboardPage(context) : dashboardPage;
     }
 
-    public static PromotionsPage getPromotionsPage(Context context) {
-        return promotionsPage == null ? new PromotionsPage(context) : promotionsPage;
+    public static PromosyonlarimPage getPromosyonlarimPage(Context context) {
+        return promosyonlarimPage == null ? new PromosyonlarimPage(context) : promosyonlarimPage;
     }
 
-    public static PersonalInformation getPersonalInformation(Context context) {
-        return personalInformation == null ? new PersonalInformation(context) : personalInformation;
+    public static KisiselBilgilerim getKisiselBilgilerim(Context context) {
+        return kisiselBilgilerim == null ? new KisiselBilgilerim(context) : kisiselBilgilerim;
     }
 }

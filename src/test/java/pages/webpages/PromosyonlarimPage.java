@@ -6,8 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pages.factory.BasePage;
 
-public class PromotionsPage extends BasePage {
-    public PromotionsPage(Context context) {
+public class PromosyonlarimPage extends BasePage {
+    public PromosyonlarimPage(Context context) {
         super(context);
         PageFactory.initElements(context.getDriver(), this);
     }
