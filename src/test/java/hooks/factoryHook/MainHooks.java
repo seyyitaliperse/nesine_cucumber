@@ -17,8 +17,8 @@ public class MainHooks {
     private Context context;
     private WebDriver driver;
 
-    public MainHooks(Context context){
-     this.context = context;
+    public MainHooks(Context context) {
+        this.context = context;
     }
 
     @Before(order = 1)
@@ -26,33 +26,42 @@ public class MainHooks {
         driver = DriverFactory.getDriver();
         context.setDriver(driver);
         context.setWebDriverWait(DriverFactory.getWebDriverWait());
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            if (driver != null) {
+                driver.quit();
+            }
+        }));
     }
 
     @After(order = 1)
     public void tearDown(Scenario scenario) {
-        if (scenario.getStatus().name().equals("PASSED")){
+        if (scenario.getStatus().name().equals("PASSED")) {
             successLog(scenario);
         }
 
-        if (scenario.getStatus().name().equals("FAILED")){
+        if (scenario.getStatus().name().equals("FAILED")) {
             failedLog(scenario);
             captureScreenShoot(scenario);
-        }
-        if (driver != null){
             driver.quit();
         }
+
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
     }
 
-    public void captureScreenShoot(Scenario scenario){
-        final byte[] screenshoot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-        scenario.attach(screenshoot, "image/png", "screenshot");
+    public void captureScreenShoot(Scenario scenario) {
+        final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+        scenario.attach(screenshot, "image/png", "screenshot");
     }
 
-    public void successLog(Scenario scenario){
-            logger.info("Passed! -> Scenario Name: " + scenario.getName());
+    public void successLog(Scenario scenario) {
+        logger.info("Passed! -> Scenario Name: " + scenario.getName());
     }
 
-    public void failedLog(Scenario scenario){
-            logger.info("Failed! -> Scenario Name: " + scenario.getName());
+    public void failedLog(Scenario scenario) {
+        logger.info("Failed! -> Scenario Name: " + scenario.getName());
     }
 }
