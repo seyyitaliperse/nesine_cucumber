@@ -59,19 +59,6 @@
             <version>${selenium.version}</version>
         </dependency>
 
-        <!-- WebDriverManager: To automate WebDriver setup -->
-        <dependency>
-            <groupId>io.github.bonigarcia</groupId>
-            <artifactId>webdrivermanager</artifactId>
-            <version>${webdrivermanager.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
         <!-- TestNG dependencies: For running and verifying tests -->
         <dependency>
             <artifactId>testng</artifactId>
@@ -94,6 +81,13 @@
             <groupId>com.googlecode.json-simple</groupId>
             <version>${json-simple.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gson.version}</version>
+        </dependency>
+
 
         <!-- Log4j Core: For logging -->
         <dependency>
