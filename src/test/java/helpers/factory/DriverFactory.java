@@ -18,31 +18,24 @@ public class DriverFactory {
     private static String browser = ConfigurationReader.get("browser");
 
     public static WebDriver getDriver() {
-        if (driver == null) {
-
-
             switch (browser.toLowerCase()) {
                 case "chrome":
-                    WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
                     break;
 
                 case "chrome-headless":
-                    WebDriverManager.chromedriver().setup();
                     ChromeOptions chromeHeadlessOptions = new ChromeOptions();
                     chromeHeadlessOptions.addArguments("--headless", "--disable-gpu", "--no-sandbox");
                     driver = new ChromeDriver(chromeHeadlessOptions);
                     break;
 
                 case "edge":
-                    WebDriverManager.edgedriver().setup();
                     driver = new EdgeDriver();
                     break;
 
                 default:
                     throw new IllegalArgumentException("Unsupported browser: " + browser);
             }
-        }
         return driver;
     }
 
