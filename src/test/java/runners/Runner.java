@@ -21,15 +21,6 @@ import helpers.factory.DriverFactory;
 )
 public class Runner extends AbstractTestNGCucumberTests {
 
-    @BeforeSuite
-    public void initContainer() {
-    }
-
-    @AfterSuite
-    public void tearDownSuite() {
-        DriverFactory.quitDriver();
-    }
-
     @Override
     @org.testng.annotations.DataProvider(parallel = true)
     public Object[][] scenarios() {
