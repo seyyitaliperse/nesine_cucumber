@@ -11,6 +11,6 @@ FROM openjdk:17-jdk-slim
 
 WORKDIR /app
 
-COPY --from=build /app/target/nesine-cucumber-web-1.0-SNAPSHOT.jar /app/nesine-cucumber-web.jar
+COPY --from=build /app/target/nesine_cucumber_web-1.0-SNAPSHOT.jar /app/nesine_cucumber_web.jar
 
-ENTRYPOINT ["java", "-jar", "nesine-cucumber-web.jar"]
+ENTRYPOINT ["java", "-jar", "nesine_cucumber_web.jar"]
