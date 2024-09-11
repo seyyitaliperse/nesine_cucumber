@@ -40,7 +40,7 @@ public class LoginSteps {
 
     @When("user attempts to log in with invalid credentials")
     public void userAttemptsToLogInWithInvalidCredentials() {
-        String tckn = JsonDataReader.getUserCredential("user","tckn");
+        String tckn = "hellworld";
         String password = "axasdjasjdj";
         loginPage.loginNegative(tckn, password);
     }

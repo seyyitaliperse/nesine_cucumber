@@ -22,7 +22,9 @@ public class MainHooks {
     }
 
     @Before(order = 1)
-    public void setUp() {
+    public void setUp(Scenario scenario) {
+        logger.info("Scenario started: " + scenario.getName());
+
         driver = DriverFactory.getDriver();
         context.setDriver(driver);
         context.setWebDriverWait(DriverFactory.getWebDriverWait());
@@ -43,7 +45,6 @@ public class MainHooks {
         if (scenario.getStatus().name().equals("FAILED")) {
             failedLog(scenario);
             captureScreenShoot(scenario);
-            driver.quit();
         }
 
         if (driver != null) {
@@ -57,7 +58,7 @@ public class MainHooks {
         scenario.attach(screenshot, "image/png", "screenshot");
     }
 
-    public void successLog(Scenario scenario) {
+public void successLog(Scenario scenario) {
         logger.info("Passed! -> Scenario Name: " + scenario.getName());
     }
 

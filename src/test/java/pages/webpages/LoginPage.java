@@ -1,12 +1,16 @@
 package pages.webpages;
 
 import helpers.container.Context;
+import helpers.logger.LoggerFactory;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pages.factory.BasePage;
 
 public class LoginPage extends BasePage {
+
+    private static final Logger logger = LoggerFactory.getLogger(LoginPage.class);
 
     public LoginPage(Context context) {
         super(context);
@@ -31,28 +35,36 @@ public class LoginPage extends BasePage {
     public WebElement invalidCredentialsDialogDetails;
 
     public void navigateToLoginPage() {
-        navigateTo("", userNameInput);
+        try {
+            navigateTo("", userNameInput);
+        } catch (Exception e) {
+            logger.error("Failed to navigate to Login Page: " + e.getMessage());
+            throw new RuntimeException("Error occurred while navigating to Login Page", e);
+        }
     }
 
-    public void login(String userName, String password){
-        enterText(userNameInput, userName);
-        enterText(passwordInput, password);
-        click(loginButton);
-        waitForVisibilityOfElement(balanceEvidence);
+    public void login(String userName, String password) {
+        try {
+            logger.info("Logging in nesine application..");
+            enterText(userNameInput, userName);
+            enterText(passwordInput, password);
+            click(loginButton);
+            waitForVisibilityOfElement(balanceEvidence);
+        } catch (Exception e) {
+            logger.error("Failed to log in: " + e.getMessage());
+            throw new RuntimeException("Error occurred while logging in", e);
+        }
     }
 
-    public void loginNegative(String userName, String password){
-        enterText(userNameInput, userName);
-        enterText(passwordInput, password);
-        click(loginButton);
+    public void loginNegative(String userName, String password) {
+        try {
+            logger.info("Trying to login application..");
+            enterText(userNameInput, userName);
+            enterText(passwordInput, password);
+            click(loginButton);
+        } catch (Exception e) {
+            logger.error("Failed to log in (negative test): " + e.getMessage());
+            throw new RuntimeException("Error occurred during negative login test", e);
+        }
     }
-
-
-
-
-
-
-
-
-
 }
